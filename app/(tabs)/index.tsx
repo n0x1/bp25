@@ -9,8 +9,7 @@ import { useTheme } from 'react-native-paper';
 import { createSchedule } from '@/components/schedule';
 
 export default function Index() {
-  const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
-  const {places, setPlaces} = useSettingsStore();
+  const {vehicle, places, setPlaces} = useSettingsStore();
   const scheduledLocations: ScheduleItem[] = createSchedule(new Date(), places, places[0], places[places.length - 1]);
 
   const [startLocation, setStartLocation] = useState<Place | null>(places[0]);

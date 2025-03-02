@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Modal, TouchableOpacity, FlatList } from 'react-native';
 import useSettingsStore from '@/store';
+import { useTheme } from 'react-native-paper';
 
 export default function SettingsScreen() {
-  // const [vehicle, setVehicle] = useState('foot');
+  const theme = useTheme();
   const { vehicle, setVehicle } = useSettingsStore();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -19,7 +20,7 @@ export default function SettingsScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={styles.text}>Settings</Text>
       <View style={styles.pickerContainer}>
         <Text style={styles.label}>Select Vehicle:</Text>
@@ -72,7 +73,6 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray', // Match background color with explore.tsx
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
