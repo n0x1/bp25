@@ -36,7 +36,7 @@ const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, set
     };
 
     return (
-        <View style={{ padding: 16, flex: 1 }}>
+        // <View style={{ padding: 16, flex: 1 }}>
             <Modal visible={visible} onDismiss={() => setVisible(false)} style={{ padding: 16, marginHorizontal: 8 }}>
                 <Card style={{ paddingVertical: 16 }}>
                     <Card.Title title={id == -1 ? "Add Place" : "Edit Place"} />
@@ -100,7 +100,7 @@ const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, set
                     </Card.Content>
                 </Card>
             </Modal>
-        </View>
+        // </View>
     );
 };
 

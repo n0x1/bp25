@@ -115,4 +115,4 @@ function findOptimalPath(places: Place[], distanceMatrix: number[][]): Place[] |
     return bestPath;
 }
 
-export default getSchedule;
+export default createSchedule;

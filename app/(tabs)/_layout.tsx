@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 
 // Create the useColorScheme hook
 import { ColorSchemeName, useColorScheme as _useColorScheme } from 'react-native';
+import { PaperProvider, useTheme } from 'react-native-paper';
 
 function useColorScheme(): NonNullable<ColorSchemeName> {
   return _useColorScheme() as NonNullable<ColorSchemeName>;
@@ -21,12 +22,13 @@ const Colors = {
 };
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useTheme();
 
   return (
+    <PaperProvider>
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'dark'].tint,
+        tabBarActiveTintColor: colorScheme.colors.primary,
         headerShown: false, // Hide the header for all tabs
         tabBarStyle: Platform.select({
           ios: {
@@ -59,5 +61,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </PaperProvider>
   );
 }
