@@ -7,6 +7,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 interface AddEditPlaceProps {
     place?: Place;
     onSave: (place: Place) => void;
+    visible: boolean;
+    setVisible: (visible: boolean) => void;
 }
 
 // export interface Place {
@@ -17,39 +19,42 @@ interface AddEditPlaceProps {
 //     duration: number; // in minutes
 // }
 
-const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave }) => {
+const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, setVisible }) => {
+    const [id, setId] = useState(place?.id || -1);
     const [name, setName] = useState(place?.name || '');
     const [location, setLocation] = useState(place?.location || '');
     const [start, setStart] = useState(place?.start || new Date());
     const [end, setEnd] = useState(place?.end || new Date());
-    const [duration, setDuration] = useState(place?.duration || 0);
+    const [duration, setDuration] = useState<string>(place?.duration.toString() || "");
 
-    const [modalVisible, setModalVisible] = useState(false);
     const [startVisible, setStartVisible] = useState(false);
     const [endVisible, setEndVisible] = useState(false);
 
     const handleSubmit = () => {
-        onSave({ name, location, start, end, duration });
-        setModalVisible(false);
+        onSave({ id, location, start, end, duration: parseInt(duration) });
+        setVisible(false);
     };
 
     return (
         <View style={{ padding: 16, flex: 1 }}>
-            <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} style={{ padding: 16 }}>
+            <Modal visible={visible} onDismiss={() => setVisible(false)} style={{ padding: 16, marginHorizontal: 8 }}>
                 <Card style={{ paddingVertical: 16 }}>
-                    <Card.Title title="Add Place" />
+                    <Card.Title title={id == -1 ? "Add Place" : "Edit Place"} />
                     <Card.Content>
-                        <TextInput
-                            label="Name"
-                            value={name}
-                            onChangeText={setName}
-                            style={{ marginBottom: 16 }}
-                        />
+                        {/* Get possible locations from map api */}
                         <TextInput
                             label="Location"
                             value={location}
                             onChangeText={setLocation}
                             style={{ marginBottom: 16 }} />
+                        <TextInput
+                            label="Duration (minutes)"
+                            value={duration}
+                            placeholder='60'
+                            onChangeText={(text) => setDuration(text)}
+                            style={{ marginBottom: 16 }}
+                            keyboardType='numeric'
+                        />
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 16 }}>
                             <Text>Avalible times:</Text>
                             <Button mode={'outlined'} onPress={() => setStartVisible(!startVisible)}>
@@ -95,16 +100,6 @@ const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave }) => {
                     </Card.Content>
                 </Card>
             </Modal>
-            <FAB
-                style={{
-                    position: 'absolute',
-                    margin: 16,
-                    right: 0,
-                    bottom: 0,
-                }}
-                icon="plus"
-                onPress={() => setModalVisible(!modalVisible)}
-            />
         </View>
     );
 };
