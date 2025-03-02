@@ -5,10 +5,13 @@ import { TextInput, Button, Modal, FAB, Card, Text } from 'react-native-paper';
 import { FlashList } from "@shopify/flash-list";
 import { Place } from "@/types";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "react-native-paper";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import useSettingsStore from "@/store";
 
 export default function Index() {
+  const colorScheme = useTheme();
+
   const [modalVisible, setModalVisible] = useState(false);
   const {places, setPlaces} = useSettingsStore();
 
@@ -16,7 +19,7 @@ export default function Index() {
   const [location, setLocation] = useState('');
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
-  const [duration, setDuration] = useState<string>( "");
+  const [duration, setDuration] = useState<string>("");
 
   const [startVisible, setStartVisible] = useState(false);
   const [endVisible, setEndVisible] = useState(false);
@@ -31,16 +34,16 @@ export default function Index() {
   }
 
   function handleEdit(item: Place) {
-    setId(item.id); 
-    setLocation(item.location); 
-    setStart(item.start); 
-    setEnd(item.end); 
-    setDuration(item.duration.toString()); 
+    setId(item.id);
+    setLocation(item.location);
+    setStart(item.start);
+    setEnd(item.end);
+    setDuration(item.duration.toString());
     setModalVisible(true)
   }
 
   const handleSubmit = () => {
-    if(id == -1) {
+    if (id == -1) {
       let newId = id == -1 ? Math.random() : id
       setPlaces(places.concat({ id: newId, location, coords: { latitude: 0, longitude: 0 }, start, end, duration: parseInt(duration) }));
     }
@@ -48,7 +51,7 @@ export default function Index() {
       let newPlaces = places.map(place => place.id == id ? { id, location, coords: { latitude: 0, longitude: 0 }, start, end, duration: parseInt(duration) } : place);
       setPlaces(newPlaces);
     }
-   
+
     setModalVisible(false);
   };
 
@@ -57,7 +60,7 @@ export default function Index() {
       style={{
         flex: 1,
         justifyContent: "center",
-        backgroundColor: "black"
+        backgroundColor: colorScheme.colors.background,
         // alignItems: "center",
       }}
     >

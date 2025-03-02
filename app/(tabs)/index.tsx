@@ -5,6 +5,9 @@ import { Place } from '@/types';
 import { Text, Card } from 'react-native-paper';
 import { ScheduleItem } from '@/components/schedule';
 import useSettingsStore from '@/store';
+import { useTheme } from 'react-native-paper';
+
+const colorScheme = useTheme();
 
 export default function Index() {
   const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
@@ -47,7 +50,7 @@ export default function Index() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Travel Planner</Text>
       </View>
-      <View style={{ flex: 2}}>
+      <View style={{ flex: 2 }}>
         {origin && destination && (
           <Map origin={scheduledLocations[0].place.coords} destination={scheduledLocations[1].place.coords} vehicle={vehicle} />
         )}
@@ -55,14 +58,14 @@ export default function Index() {
       <FlatList
         data={scheduledLocations}
         style={{ flex: 1 }}
-        renderItem={({ item }) => 
-        <Card style={{ margin: 16 }} key={item.place.id} onPress={()=>{}}>
-          <Card.Title title={item.place.location} />
-          <Card.Content>
-            <Text>Time: {item.arrivalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} to {item.departureTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
-          </Card.Content>
-        </Card>}
-        // contentContainerStyle={{backgroundColor: "red" }}
+        renderItem={({ item }) =>
+          <Card style={{ margin: 16 }} key={item.place.id} onPress={() => { }}>
+            <Card.Title title={item.place.location} />
+            <Card.Content>
+              <Text>Time: {item.arrivalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} to {item.departureTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
+            </Card.Content>
+          </Card>}
+      // contentContainerStyle={{backgroundColor: "red" }}
       />
     </View>
   );
@@ -72,11 +75,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50, // Add padding to move the content down
+    backgroundColor: colorScheme.colors.background,
   },
   header: {
     alignItems: 'center',
     padding: 16,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Optional: Add a background color with some transparency
   },
   headerText: {
     fontSize: 20,

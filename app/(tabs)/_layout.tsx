@@ -26,41 +26,42 @@ export default function TabLayout() {
 
   return (
     <PaperProvider>
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: colorScheme.colors.primary,
-        headerShown: false, // Hide the header for all tabs
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: colorScheme.colors.primary,
+          headerShown: false, // Hide the header for all tabs
+          tabBarStyle: Platform.select({
+            ios: {
+              // Use a transparent background on iOS to show the blur effect
+              position: 'absolute',
+              backgroundColor: colorScheme.colors.background,
+            },
+            default: {},
+          }),
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="paper-plane" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Home',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="explore"
+          options={{
+            title: 'Explore',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="paper-plane" color={color} />,
+          }}
+        />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            title: 'Settings',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
+          }}
+        />
+      </Tabs>
     </PaperProvider>
   );
 }
