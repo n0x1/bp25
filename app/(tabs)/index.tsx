@@ -8,8 +8,6 @@ import useSettingsStore from '@/store';
 import { useTheme } from 'react-native-paper';
 import { createSchedule } from '@/components/schedule';
 
-const colorScheme = useTheme();
-
 export default function Index() {
   const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
   const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
@@ -42,6 +40,23 @@ export default function Index() {
     fetchAddresses();
   }, []);
 
+  const colorScheme = useTheme();
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: 50, // Add padding to move the content down
+      backgroundColor: colorScheme.colors.background,
+    },
+    header: {
+      alignItems: 'center',
+      padding: 16,
+    },
+    headerText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    }
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -67,19 +82,3 @@ export default function Index() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 50, // Add padding to move the content down
-    backgroundColor: colorScheme.colors.background,
-  },
-  header: {
-    alignItems: 'center',
-    padding: 16,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  }
-});
