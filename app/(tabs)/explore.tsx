@@ -14,6 +14,7 @@ export default function Index() {
       <AddEditPlace
         // place={{name: 'Place', location: 'Location', start: new Date(), end: new Date(), duration: 0}}
         onSave={(place) => console.log(place)}/>
+      <Text>Explorer</Text>
     </View>
   );
 }
