@@ -61,6 +61,13 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
           }}
         />
+        <Tabs.Screen
+          name="login"
+          options={{
+            title: 'Login',
+            tabBarIcon: ({ color }) => <FontAwesome size={28} name="id-badge" color={color} />,
+          }}
+        />
       </Tabs>
     </PaperProvider>
   );

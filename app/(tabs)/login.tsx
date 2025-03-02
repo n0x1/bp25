@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Image } from 'expo-image'; 
+import { Image } from 'expo-image';
 import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import { green } from 'react-native-reanimated/lib/typescript/Colors';
 import { Link } from 'expo-router';
@@ -12,12 +12,12 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Home</Text>
+        <Text style={styles.headerText}>Login</Text>
       </View>
-      <View style = {styles.text}>
-      <Link href ="/explore" style={styles.button}>
-        Start Planning!
-      </Link>
+      <View>
+        <Link href="/explore" style={styles.button}>
+          Start Planning!
+        </Link>
       </View>
 
       <View style={styles.imageContainer}>
@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 50,
   },
-  
+
   imageContainer: {
-    flex: 1, 
+    flex: 1,
   },
   image: {
     width: 340,
