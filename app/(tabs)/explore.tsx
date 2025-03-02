@@ -71,7 +71,7 @@ export default function Index() {
           <Card style={{ margin: 16 }} key={item.id} onPress={() => handleEdit(item)}>
             <Card.Title title={item.location} />
             <Card.Content>
-              <Text>Avalible: {item.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} to {item.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
+              <Text>Available: {item.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} to {item.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
               <Text>Duration: {item.duration} minutes</Text>
             </Card.Content>
           </Card>}
