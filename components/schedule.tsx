@@ -2,8 +2,8 @@ import { Place } from "@/types";
 
 export interface ScheduleItem {
     place: Place,
-    arrivalTime: number,
-    departureTime: number,
+    arrivalTime: Date,
+    departureTime: Date,
 }
 
 const createSchedule = (startTime: number, places: Place[], start: Place, end:Place): ScheduleItem[] => {
@@ -24,9 +24,9 @@ const createSchedule = (startTime: number, places: Place[], start: Place, end:Pl
 
         schedule.push({
             place: places[i],
-            arrivalTime,
+            arrivalTime: minutesToTime(arrivalTime),
             // start: startTime,
-            departureTime,
+            departureTime: minutesToTime(departureTime),
         });
 
         currentTime = departureTime;
@@ -54,6 +54,12 @@ function getDistanceMatrix(places: Place[]): number[][] {
 
 function timeInMinutes(time: Date) {
     return time.getHours() * 60 + time.getMinutes();
+}
+
+function minutesToTime(minutes: number) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return new Date(0, 0, 0, hours, mins);
 }
 
 //A* algorithm
