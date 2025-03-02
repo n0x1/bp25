@@ -15,8 +15,8 @@ export default function Button({ label, theme }: Props) {
           { borderWidth: 4, borderColor: '#ffc812', borderRadius: 18 },
         ]}>
       <Pressable style={styles.button} 
-        style={[styles.button, { backgroundColor: '#ffd09e' }]}
-        onPress={() => alert('Dark Mode Activated')}>
+        style={[styles.button, { backgroundColor: '#ffd09e' }]}//box why is it error
+        onPress={() => alert('Dark Mode Activated')}> 
         <Text style={styles.buttonLabel}>{label}</Text>
       </Pressable>
     </View>

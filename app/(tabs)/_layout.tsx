@@ -40,10 +40,17 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Travel',
+          tabBarIcon: ({ color }) => <FontAwesome size={28} name="plane" color={color} />,
         }}
       />
       <Tabs.Screen
