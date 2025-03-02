@@ -5,7 +5,7 @@ import { Text, View, StyleSheet } from "react-native";
 export default function Index() {
   const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
   const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
-  const vehicle = 'bike'; // Change this to 'car', 'bike', or 'foot' as needed
+  const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
 
   const geoapifyApiKey = 'b75c0428362b4b0f973d03d2638cb08c';
 
