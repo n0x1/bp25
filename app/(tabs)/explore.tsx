@@ -4,7 +4,7 @@ import AddEditPlace from "@/components/addEditPlace";
 import { FAB } from "react-native-paper";
 
 export default function Index() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   return (
     <View

@@ -23,6 +23,7 @@ export default function Map({ origin, destination, vehicle }: MapProps) {
         longitude: point[0],
       }));
       setRoute(points);
+      console.log('Distance:', data.paths[0].distance); // Print the distance to the console
     };
 
     fetchRoute();
@@ -69,3 +70,4 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
 });
+
