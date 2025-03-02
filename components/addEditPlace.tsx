@@ -3,6 +3,7 @@ import { View, Platform } from 'react-native';
 import { TextInput, Button, Modal, FAB, Card, Text } from 'react-native-paper';
 import { Place } from '@/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import useSettingsStore from '@/store';
 
 interface AddEditPlaceProps {
     place?: Place;
@@ -29,8 +30,10 @@ const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, set
     const [startVisible, setStartVisible] = useState(false);
     const [endVisible, setEndVisible] = useState(false);
 
+    const {places} = useSettingsStore();
+
     const handleSubmit = () => {
-        let newId = id==-1?Math.random():id
+        let newId = id==-1?places.length:id
         onSave({ id: newId, location, coords: {latitude: 0, longitude: 0}, start, end, duration: parseInt(duration) });
         setVisible(false);
     };
