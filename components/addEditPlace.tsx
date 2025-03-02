@@ -21,7 +21,6 @@ interface AddEditPlaceProps {
 
 const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, setVisible }) => {
     const [id, setId] = useState(place?.id || -1);
-    const [name, setName] = useState(place?.name || '');
     const [location, setLocation] = useState(place?.location || '');
     const [start, setStart] = useState(place?.start || new Date());
     const [end, setEnd] = useState(place?.end || new Date());
