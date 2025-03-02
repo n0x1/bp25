@@ -9,11 +9,12 @@ import { useTheme } from 'react-native-paper';
 import { createSchedule } from '@/components/schedule';
 
 export default function Index() {
-  const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
   const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
   const {places, setPlaces} = useSettingsStore();
   const scheduledLocations: ScheduleItem[] = createSchedule(new Date(), places, places[0], places[places.length - 1]);
+
+  const [startLocation, setStartLocation] = useState<Place | null>(places[0]);
+  const [endLocation, setEndLocation] = useState<Place | null>(places[places.length - 1]);
 
   const geoapifyApiKey = 'b75c0428362b4b0f973d03d2638cb08c';
 
@@ -63,15 +64,15 @@ export default function Index() {
         <Text style={styles.headerText}>Travel Planner</Text>
       </View>
       <View style={{ flex: 2 }}>
-        {origin && destination && (
-          <Map origin={scheduledLocations[0].place.coords} destination={scheduledLocations[1].place.coords} vehicle={vehicle} />
+        {startLocation && endLocation && (
+          <Map origin={startLocation.coords} destination={endLocation.coords} vehicle={vehicle} />
         )}
       </View>
       <FlatList
         data={scheduledLocations}
         style={{ flex: 1 }}
-        renderItem={({ item }) =>
-          <Card style={{ margin: 16 }} key={item.place.id} onPress={() => { }}>
+        renderItem={({ item, index }) =>
+          <Card style={{ margin: 16 }} key={item.place.id} onPress={() => {setStartLocation(item.place); setEndLocation(scheduledLocations[index+1]?.place??scheduledLocations[0].place)}}>
             <Card.Title title={item.place.location} />
             <Card.Content>
               <Text>Time: {item.arrivalTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} to {item.departureTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
