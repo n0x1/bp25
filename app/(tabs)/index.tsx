@@ -4,12 +4,14 @@ import { View, StyleSheet, FlatList } from "react-native";
 import { Place } from '@/types';
 import { Text, Card } from 'react-native-paper';
 import { ScheduleItem } from '@/components/schedule';
+import useSettingsStore from '@/store';
 
 export default function Index() {
   const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
   const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
   const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
-  const [places, setPlaces] = useState<ScheduleItem[]>([
+  const {places, setPlaces} = useSettingsStore();
+  const [scheduledLocations, setScheduledLocations] = useState<ScheduleItem[]>([
      {place: { id: 1, location: "Central Park", coords: { latitude: 40.785091, longitude: -73.968285 }, start: new Date(), end: new Date(), duration: 120 }, arrivalTime: new Date(), departureTime: new Date()},
      {place: { id: 2, location: "Eiffel Tower", coords: { latitude: 48.858844, longitude: 2.294351 }, start: new Date(), end: new Date(), duration: 90 }, arrivalTime: new Date(), departureTime: new Date()},
       {place: { id: 3, location: "Great Wall of China", coords: { latitude: 40.431908, longitude: 116.570374 }, start: new Date(), end: new Date(), duration: 180 }, arrivalTime: new Date(), departureTime: new Date()},
@@ -47,11 +49,11 @@ export default function Index() {
       </View>
       <View style={{ flex: 2}}>
         {origin && destination && (
-          <Map origin={places[0].place.coords} destination={places[1].place.coords} vehicle={vehicle} />
+          <Map origin={scheduledLocations[0].place.coords} destination={scheduledLocations[1].place.coords} vehicle={vehicle} />
         )}
       </View>
       <FlatList
-        data={places}
+        data={scheduledLocations}
         style={{ flex: 1 }}
         renderItem={({ item }) => 
         <Card style={{ margin: 16 }} key={item.place.id} onPress={()=>{}}>

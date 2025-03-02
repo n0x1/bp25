@@ -6,14 +6,11 @@ import { FlashList } from "@shopify/flash-list";
 import { Place } from "@/types";
 import { SafeAreaView } from "react-native-safe-area-context";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import useSettingsStore from "@/store";
 
 export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [places, setPlaces] = useState<Place[]>([
-    { id: 1, location: "Central Park", coords: { latitude: 40.785091, longitude: -73.968285 }, start: new Date(), end: new Date(), duration: 120 },
-    { id: 2, location: "Eiffel Tower", coords: { latitude: 48.858844, longitude: 2.294351 }, start: new Date(), end: new Date(), duration: 90 },
-    { id: 3, location: "Great Wall of China", coords: { latitude: 40.431908, longitude: 116.570374 }, start: new Date(), end: new Date(), duration: 180 },
-  ]);
+  const {places, setPlaces} = useSettingsStore();
 
   const [id, setId] = useState(-1);
   const [location, setLocation] = useState('');
