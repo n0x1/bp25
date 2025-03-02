@@ -22,8 +22,9 @@ export default function Index() {
 
       <View style={styles.imageContainer}>
         <Image source={PlaceholderImage} style={styles.image} />
+        <Link href='https://docs.google.com/forms/d/e/1FAIpQLSdS78WhBGfmLOF91aWwocIEMX5eODFukubGwv7mhQ2Oanh8iA/viewform?usp=dialog'
+          style={{ textAlign: 'center', marginTop: 20 }}>Send us feedback!</Link>
       </View>
-
 
     </View>
   );
