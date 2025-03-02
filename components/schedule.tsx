@@ -6,18 +6,19 @@ export interface ScheduleItem {
     departureTime: Date,
 }
 
-const createSchedule = (startTime: number, places: Place[], start: Place, end:Place): ScheduleItem[] => {
+export const createSchedule = (startTime: Date, places: Place[], start: Place, end:Place): ScheduleItem[] => {
     // Prioritize place with earliest opening hour.
     
     const distanceMatrix = getDistanceMatrix(places);
     // CHANGE: Assume the optimal path is the given path
-    // places = findOptimalPath(places, distanceMatrix) ?? places;
+    // places = findOptimalPath(places, distanceMatrix, start, end) ?? places;
 
-    let currentTime = startTime;
+    let currentTime = timeInMinutes(startTime);
     let schedule: ScheduleItem[] = [];
 
     for(let i = 0; i < places.length; i++) {
-        const arrivalTime = currentTime + distanceMatrix[places[i].id][places[i+1].id??end.id];
+        const arrivalTime = currentTime + getDistance();
+        // distanceMatrix[places[i].id][places[i+1]?.id??end.id]
         // CHANGE: Assume the place is open when you arrive
         // const startTime = Math.max(arrivalTime, timeInMinutes(places[i].start)); 
         const departureTime = arrivalTime + places[i].duration;
@@ -35,6 +36,9 @@ const createSchedule = (startTime: number, places: Place[], start: Place, end:Pl
     return schedule;
 }
 
+function getDistance(){
+    return 30; // CHANGE: Placeholder
+}
 function findDistance(coords1: Place["coords"], coords2: Place["coords"]) {
     return 1 // CHANGE: Placeholder
 }
@@ -63,9 +67,7 @@ function minutesToTime(minutes: number) {
 }
 
 //A* algorithm
-function findOptimalPath(places: Place[], distanceMatrix: number[][]): Place[] | null {
-    const start = places[0]; // CHANGE: Assume first place is the starting point
-    const end = places[places.length - 1]; // CHANGE: Assume last place is the final destination
+function findOptimalPath(places: Place[], distanceMatrix: number[][], start:Place, end:Place): Place[] | null {
 
     type State = {
         currentPlace: Place;
