@@ -4,7 +4,9 @@ import { Place } from './types';
 
 interface SettingsStore {
     places: Place[];
+    vehicle: string;
     setPlaces: (newplaces: Place[]) => void;
+    setVehicle: (newVehicles: string) => void;
 }
 
 const useSettingsStore = create<SettingsStore>((set) => ({
@@ -17,7 +19,9 @@ const useSettingsStore = create<SettingsStore>((set) => ({
         { id: 6, location: "Bass Harbor Head Light", coords: { latitude: 44.2850, longitude: -68.3800 }, start: new Date(), end: new Date(), duration: 50 },
         { id: 7, location: "Jordan Bay", coords: { latitude: 44.3700, longitude: -68.2200 }, start: new Date(), end: new Date(), duration: 110 },
     ],
+    vehicle: 'car',
     setPlaces: (newPlaces) => set(() => ({ places: newPlaces })),
+    setVehicle: (newVehicle) => set(() => ({ vehicle: newVehicle })),
 }));
 
 export default useSettingsStore;

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Modal, TouchableOpacity, FlatList } from 'react-native';
+import useSettingsStore from '@/store';
 
 export default function SettingsScreen() {
-  const [vehicle, setVehicle] = useState('foot');
+  // const [vehicle, setVehicle] = useState('foot');
+  const { vehicle, setVehicle } = useSettingsStore();
   const [modalVisible, setModalVisible] = useState(false);
 
   const vehicleOptions = [
