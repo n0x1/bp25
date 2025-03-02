@@ -28,19 +28,6 @@ export default function Index() {
     return null;
   };
 
-  useEffect(() => {
-    const fetchAddresses = async () => {
-      const originAddress = '1600 Amphitheatre Parkway, Mountain View, CA';
-      const destinationAddress = '75 Amherst Street, Cambridge, MA';
-      const originCoords = await fetchCoordinates(originAddress);
-      const destinationCoords = await fetchCoordinates(destinationAddress);
-      setOrigin(originCoords);
-      setDestination(destinationCoords);
-    };
-
-    fetchAddresses();
-  }, []);
-
   const colorScheme = useTheme();
   const styles = StyleSheet.create({
     container: {

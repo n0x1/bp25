@@ -60,7 +60,6 @@ export default function Index() {
       style={{
         flex: 1,
         justifyContent: "center",
-        backgroundColor: "gray"
         // alignItems: "center",
       }}
     >
