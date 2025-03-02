@@ -13,7 +13,12 @@ export default function Index() {
   const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
   const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
   const {places, setPlaces} = useSettingsStore();
-  // const scheduledLocations: ScheduleItem[] = createSchedule(new Date(), places??[], places[0], places[places.length - 1]);
+  // const places: Place[] = [
+  //   { id: 1, location: "Central Park", coords: { latitude: 40.785091, longitude: -73.968285 }, start: new Date(), end: new Date(), duration: 120 },
+  //   { id: 2, location: "Eiffel Tower", coords: { latitude: 48.858844, longitude: 2.294351 }, start: new Date(), end: new Date(), duration: 90 },
+  //   { id: 3, location: "Great Wall of China", coords: { latitude: 40.431908, longitude: 116.570374 }, start: new Date(), end: new Date(), duration: 180 },
+  // ];
+  const scheduledLocations: ScheduleItem[] = createSchedule(new Date(), places, places[0], places[places.length - 1]);
 
   const geoapifyApiKey = 'b75c0428362b4b0f973d03d2638cb08c';
 

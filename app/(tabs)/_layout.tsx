@@ -36,7 +36,7 @@ export default function TabLayout() {
               position: 'absolute',
               backgroundColor: colorScheme.colors.background,
             },
-            default: {},
+            default: { backgroundColor: colorScheme.colors.background,},
           }),
         }}
       >
