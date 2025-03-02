@@ -6,14 +6,14 @@ export interface ScheduleItem {
     departureTime: Date,
 }
 
-const createSchedule = (startTime: number, places: Place[], start: Place, end:Place): ScheduleItem[] => {
+export const createSchedule = (startTime: Date, places: Place[], start: Place, end:Place): ScheduleItem[] => {
     // Prioritize place with earliest opening hour.
     
     const distanceMatrix = getDistanceMatrix(places);
     // CHANGE: Assume the optimal path is the given path
     // places = findOptimalPath(places, distanceMatrix) ?? places;
 
-    let currentTime = startTime;
+    let currentTime = timeInMinutes(startTime);
     let schedule: ScheduleItem[] = [];
 
     for(let i = 0; i < places.length; i++) {

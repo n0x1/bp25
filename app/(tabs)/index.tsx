@@ -6,6 +6,7 @@ import { Text, Card } from 'react-native-paper';
 import { ScheduleItem } from '@/components/schedule';
 import useSettingsStore from '@/store';
 import { useTheme } from 'react-native-paper';
+import { createSchedule } from '@/components/schedule';
 
 const colorScheme = useTheme();
 
@@ -14,11 +15,7 @@ export default function Index() {
   const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
   const vehicle = 'car'; // Change this to 'car', 'bike', or 'foot' as needed
   const {places, setPlaces} = useSettingsStore();
-  const [scheduledLocations, setScheduledLocations] = useState<ScheduleItem[]>([
-     {place: { id: 1, location: "Central Park", coords: { latitude: 40.785091, longitude: -73.968285 }, start: new Date(), end: new Date(), duration: 120 }, arrivalTime: new Date(), departureTime: new Date()},
-     {place: { id: 2, location: "Eiffel Tower", coords: { latitude: 48.858844, longitude: 2.294351 }, start: new Date(), end: new Date(), duration: 90 }, arrivalTime: new Date(), departureTime: new Date()},
-      {place: { id: 3, location: "Great Wall of China", coords: { latitude: 40.431908, longitude: 116.570374 }, start: new Date(), end: new Date(), duration: 180 }, arrivalTime: new Date(), departureTime: new Date()},
-    ]);
+  // const scheduledLocations: ScheduleItem[] = createSchedule(new Date(), places??[], places[0], places[places.length - 1]);
 
   const geoapifyApiKey = 'b75c0428362b4b0f973d03d2638cb08c';
 
