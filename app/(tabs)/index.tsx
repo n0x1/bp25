@@ -2,8 +2,9 @@ import Map from "@/components/map";
 import { Text, View, StyleSheet } from "react-native";
 
 export default function Index() {
-  const origin = { latitude: 37.78825, longitude: -122.4324 };
+  const origin = { latitude: 42.78825, longitude: -71.4324 };
   const destination = { latitude: 37.75825, longitude: -122.4624 };
+  const vehicle = 'bike'; // Change this to 'car', 'bike', or 'foot' as needed
 
   return (
     <View style={styles.container}>
@@ -11,7 +12,7 @@ export default function Index() {
         <Text style={styles.headerText}>Travel Planner</Text>
       </View>
       <View style={styles.mapContainer}>
-        <Map origin={origin} destination={destination} />
+        <Map origin={origin} destination={destination} vehicle={vehicle} />
       </View>
     </View>
   );
