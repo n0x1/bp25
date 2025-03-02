@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 3,
+    shadowRadius: 10,
+    shadowOffset:{
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.55
     
   },
   button: {
@@ -40,6 +46,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    shadowRadius: 10,
+    shadowOffset:{
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.55
+
   },
   buttonIcon: {
     paddingRight: 8,
