@@ -35,15 +35,33 @@ export default function SettingsScreen() {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Select Vehicle</Text>
             <FlatList
               data={vehicleOptions}
               keyExtractor={(item) => item.value}
               renderItem={({ item }) => (
-                <TouchableOpacity style={styles.modalItem} onPress={() => handleSelectVehicle(item.value)}>
-                  <Text style={styles.modalItemText}>{item.label}</Text>
+                <TouchableOpacity 
+                  style={[
+                    styles.modalItem, 
+                    item.value === vehicle && styles.selectedItem
+                  ]} 
+                  onPress={() => handleSelectVehicle(item.value)}
+                >
+                  <Text style={[
+                    styles.modalItemText,
+                    item.value === vehicle && styles.selectedItemText
+                  ]}>
+                    {item.label}
+                  </Text>
                 </TouchableOpacity>
               )}
             />
+            <TouchableOpacity 
+              style={styles.closeButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -57,6 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray', // Match background color with explore.tsx
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 2,
   },
   text: {
     color: 'darkblue',
@@ -76,11 +95,14 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: 'gray',
-    borderWidth: 1,
+    borderColor: '#3a86ff',
+    borderWidth: 2,
+    borderRadius: 8,
+    backgroundColor: '#f8f9fa',
   },
   pickerText: {
     fontSize: 18,
+    color: '#333',
   },
   modalContainer: {
     flex: 1,
@@ -93,13 +115,48 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'center',
   },
   modalItem: {
     padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    marginVertical: 5,
+    backgroundColor: '#f8f9fa',
+  },
+  selectedItem: {
+    backgroundColor: '#3a86ff',
+    borderColor: '#0056b3',
   },
   modalItemText: {
     fontSize: 18,
+    textAlign: 'center',
+  },
+  selectedItemText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  closeButton: {
+    marginTop: 15,
+    padding: 12,
+    backgroundColor: '#6c757d',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
