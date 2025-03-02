@@ -144,7 +144,7 @@ export default function Index() {
           position: 'absolute',
           margin: 16,
           right: 0,
-          bottom: 0,
+          bottom: Platform.OS == "ios" ? 78 : 0,
         }}
         icon="plus"
         onPress={() => handleAdd()}
