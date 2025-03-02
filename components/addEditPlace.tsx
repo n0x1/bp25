@@ -31,7 +31,8 @@ const AddEditPlace: React.FC<AddEditPlaceProps> = ({ place, onSave, visible, set
     const [endVisible, setEndVisible] = useState(false);
 
     const handleSubmit = () => {
-        onSave({ id, location, start, end, duration: parseInt(duration) });
+        let newId = id==-1?Math.random():id
+        onSave({ id: newId, location, coords: {latitude: 0, longitude: 0}, start, end, duration: parseInt(duration) });
         setVisible(false);
     };
 
